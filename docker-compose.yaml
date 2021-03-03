@@ -1,0 +1,17 @@
+version: "3"
+services:
+  database:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=kruder
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+  kruder_backend:
+    build: .
+    env_file: .env
+    ports:
+      - "6000:6000"
